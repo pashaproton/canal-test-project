@@ -1,26 +1,25 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Grid from '@mui/material/Grid';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Filter from './components/Filter';
+import Result from './components/Result';
+import { AppContextProvider } from './Context';
 
-export default App;
+const App: React.FC = () => (
+  <AppContextProvider>
+    <Grid container>
+      <Grid container justifyContent="center">
+        <Grid item xs={6}>
+          <Filter />
+        </Grid>
+      </Grid>
+      <Grid container justifyContent="center">
+        <Grid item xs={6}>
+          <Result />
+        </Grid>
+      </Grid>
+    </Grid>
+  </AppContextProvider>
+);
+
+export default React.memo(App);
