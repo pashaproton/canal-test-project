@@ -1,4 +1,6 @@
 import React from 'react';
+
+import useSearchParam from './hooks/useSearchParam';
 import { Context, SORT_BY } from './types';
 
 const defaultValues: Context = {
@@ -19,8 +21,9 @@ interface AppContextProviderProps {
 export const AppContextProvider: React.FC<AppContextProviderProps> = ({
   children
 }) => {
+  const [q] = useSearchParam();
   const [adult, setAdult] = React.useState<Context['adult']>(defaultValues.adult);
-  const [search, setSearch] = React.useState<Context['search']>(defaultValues.search);
+  const [search, setSearch] = React.useState<Context['search']>(q ?? defaultValues.search);
   const [sortBy, setSortBy] = React.useState<Context['sortBy']>(defaultValues.sortBy);
 
   const value = React.useMemo<Context>(
